@@ -1,23 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import data from "./data";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div >
+      <header>
+        <a href="/"> Amazona </a>
       </header>
+      <main>
+        <h1>Featured Products!</h1>
+
+        {/* 
+        <div className="products" >
+          {
+            data.products.map((prod) => (
+              <div className="product" >
+                <img src={prod.image} alt={prod.name} />
+                <p>
+                  {prod.name}
+                </p>
+                <p>
+                  {prod.price}
+                </p>
+              </div>
+            ))
+          }
+        </div>  */}
+
+
+        <div className="products">
+          {
+            data.products.map((prod) => {
+              const { name, price, image, slug } = prod
+              return (
+                <>
+                  <div className="product" key={slug}>
+
+                    <a href={`/products/${slug}`} >
+                      <img src={image} alt={name} />
+                    </a>
+
+                    <div className="product-info">
+                      <a href={`/products/${slug}`} >
+                        <p>{name}</p>
+                      </a>
+
+                      <p> <strong>{price}</strong>  </p>
+                      <button>Add to Cart</button>
+
+                    </div>
+                  </div>
+                </>
+              )
+
+            }
+
+            )
+          }
+        </div>
+      </main>
     </div>
   );
 }
